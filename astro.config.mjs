@@ -25,6 +25,16 @@ export default defineConfig({
       ],
       sidebar: [
         {
+          label: 'Start',
+          translations: { ru: 'Начало' },
+          items: [{ slug: 'docs/quickstart' }, { slug: 'docs/llm' }],
+        },
+        {
+          label: 'Guides',
+          translations: { ru: 'Руководства' },
+          items: [{ slug: 'docs/anatomy' }, { slug: 'docs/publishing' }, { slug: 'docs/faq' }],
+        },
+        {
           label: 'Reference',
           translations: { ru: 'Справочник' },
           items: [{ slug: 'docs/reference/game-json' }, { slug: 'docs/reference/cli' }, typeDocSidebarGroup],
