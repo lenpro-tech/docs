@@ -1,0 +1,5 @@
+.lg-form iframe { display: block; width: 100%; max-width: 100%; min-height: 640px; border: 0; }
+.lg-steps { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); padding: 0; margin: 1rem 0; list-style: none; }
+.lg-steps li { border: 1px solid var(--sl-color-gray-5); border-radius: 0.5rem; padding: 1rem; }
+.lg-steps p { margin: 0.5rem 0 0; }
+.lg-consent { font-size: var(--sl-text-sm); color: var(--sl-color-gray-3); }

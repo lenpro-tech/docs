@@ -46,3 +46,35 @@ test('llms-full.txt holds every EN page and the skill', () => {
   assert.match(t, /check: OK/);
   assert.doesNotMatch(pages, /[А-Яа-яЁё]{4,}/, 'EN only');
 });
+
+test('schools landing: RU only, hero, form, consent link', () => {
+  const t = read('schools/index.html');
+  assert.match(t, /<html[^>]*lang="ru"/);
+  assert.match(t, /Научите программировать, работать с ИИ и делать игры — за один проект/);
+  assert.match(t, /<iframe[^>]+src="https:\/\/forms\.yandex\.ru\//);
+  assert.match(t, /href="\/privacy\/"/);
+  assert.ok(!has('en/schools/index.html'));
+});
+
+test('home pages: waitlist form, consent link, docs and schools CTAs', () => {
+  for (const [p, docs, anchor] of [
+    ['index.html', '/docs/quickstart/', 'id="магазин-открывается-скоро"'],
+    ['en/index.html', '/en/docs/quickstart/', 'id="the-store-opens-soon"'],
+  ]) {
+    const t = read(p);
+    assert.match(t, /<iframe[^>]+src="https:\/\/forms\.yandex\.ru\//, p);
+    assert.match(t, /href="\/privacy\/"/, p);
+    assert.match(t, new RegExp(`href="${docs}"`), p);
+    assert.ok(t.includes(anchor), `${p} ${anchor}`);
+  }
+  assert.match(read('index.html'), /href="\/schools\/"/);
+  assert.match(read('index.html'), /Магазин открывается скоро/);
+  assert.match(read('en/index.html'), /The store opens soon/);
+});
+
+test('privacy page exists; nothing links to the unreleased store', () => {
+  assert.match(read('privacy/index.html'), /персональных данных/);
+  for (const p of ['index.html', 'en/index.html', 'schools/index.html']) {
+    assert.doesNotMatch(read(p), /play\.logigra\.ru/, p);
+  }
+});

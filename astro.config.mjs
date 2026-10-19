@@ -7,6 +7,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Logigra',
+      customCss: ['./src/styles/landing.css'],
       defaultLocale: 'root',
       locales: {
         root: { label: 'Русский', lang: 'ru' },

@@ -1,6 +1,40 @@
 ---
 title: Logigra
+description: Describe the rules of a game to your AI — get a game real people play.
 template: splash
 hero:
   title: Idea → a game people play
+  tagline: Describe the rules of a board or turn-based game to your AI — it builds the game on the Logigra engine. The server keeps play fair; you get a game real people play.
+  actions:
+    - text: Quickstart
+      link: /en/docs/quickstart/
+      variant: primary
+      icon: right-arrow
 ---
+
+import Steps from '../../../components/Steps.astro';
+import YandexForm from '../../../components/YandexForm.astro';
+import { FORMS } from '../../../site-config';
+
+## How it works
+
+<Steps items={[
+  { title: 'Describe the rules', text: 'In your own words, as you would explain them to a friend.' },
+  { title: 'The AI writes the game and tests', text: 'game-kit check plays thousands of matches and catches broken rules.' },
+  { title: 'Submit for review', text: 'A person plays and checks it — then the game goes to the store.' },
+]} />
+
+You invent and verify, the AI writes the code.
+
+## It already works
+
+Gridball, a paper-football game, was built by an AI from a rules
+description with zero human code edits. 2000 simulated matches without
+an error, playtest passed. [How to do the same →](/en/docs/llm/)
+
+## The store opens soon
+
+Leave your email to hear about the launch. Add your GitHub login if you
+want to publish games: we will give you access to the catalog.
+
+<YandexForm src={FORMS.waitlist} title="Waitlist" lang="en" />

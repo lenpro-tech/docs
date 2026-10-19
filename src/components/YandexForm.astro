@@ -1,0 +1,12 @@
+---
+interface Props { src: string; title: string; lang: 'ru' | 'en' }
+const { src, title, lang } = Astro.props;
+---
+<div class="lg-form not-content">
+  <iframe src={src} title={title} loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  <p class="lg-consent">
+    {lang === 'ru'
+      ? <Fragment>Отправляя форму, вы соглашаетесь с <a href="/privacy/">политикой обработки персональных данных</a>.</Fragment>
+      : <Fragment>By submitting you agree to the <a href="/privacy/">personal data policy</a> (in Russian).</Fragment>}
+  </p>
+</div>
