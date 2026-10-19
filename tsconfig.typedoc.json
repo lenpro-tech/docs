@@ -1,0 +1,7 @@
+{
+  "compilerOptions": { "module": "ESNext", "moduleResolution": "Bundler", "target": "ES2022", "skipLibCheck": true, "strict": true },
+  "include": [
+    "node_modules/@table-games-engine/core/dist/index.d.ts",
+    "node_modules/@table-games-engine/game-kit/dist/index.d.ts"
+  ]
+}

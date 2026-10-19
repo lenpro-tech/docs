@@ -19,3 +19,9 @@ test('no internal platform name in the built site', () => {
 });
 
 test('build output exists', () => assert.ok(has('index.html')));
+
+test('reference pages are generated', () => {
+  assert.match(read('docs/reference/game-json/index.html'), /<code[^>]*>slug<\/code>/);
+  assert.match(read('docs/reference/cli/index.html'), /create &lt;slug&gt;/);
+  assert.ok(has('docs/reference/api/readme/index.html') && has('docs/reference/api/game-kit/dist/functions/runcheck/index.html'));
+});
