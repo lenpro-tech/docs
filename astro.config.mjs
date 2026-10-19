@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightTypeDoc, { typeDocSidebarGroup } from 'starlight-typedoc';
+import starlightLinksValidator from 'starlight-links-validator';
 
 export default defineConfig({
   site: 'https://logigra.ru',
@@ -14,6 +15,12 @@ export default defineConfig({
         en: { label: 'English', lang: 'en' },
       },
       plugins: [
+        starlightLinksValidator({
+          // /schools/ and /privacy/ are Astro pages the validator cannot see; generated API pages
+          // carry typedoc's "-1" anchors that Starlight's slugger does not produce.
+          exclude: ({ slug, link }) =>
+            ['/schools/', '/privacy/'].includes(link) || slug.startsWith('docs/reference/api'),
+        }),
         starlightTypeDoc({
           entryPoints: [
             './node_modules/@table-games-engine/core/dist/index.d.ts',
@@ -21,7 +28,7 @@ export default defineConfig({
           ],
           tsconfig: './tsconfig.typedoc.json',
           output: 'docs/reference/api',
-          typeDoc: { excludeExternals: false, entryPointStrategy: 'resolve' },
+          typeDoc: { excludeExternals: false, entryPointStrategy: 'resolve', outputFileStrategy: 'modules' },
         }),
       ],
       sidebar: [

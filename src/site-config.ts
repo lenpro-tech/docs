@@ -1,4 +1,4 @@
-// Operator-provided values. scripts/check-live.mjs blocks deploy while any REPLACE_ME remains.
+// Operator-provided values. scripts/check-live.mjs blocks deploy while any placeholder remains.
 export const FORMS = {
   schools: 'https://forms.yandex.ru/u/REPLACE_ME_SCHOOLS/?iframe=1',
   waitlist: 'https://forms.yandex.ru/u/REPLACE_ME_WAITLIST/?iframe=1',
