@@ -6,7 +6,7 @@ const { src, title, lang } = Astro.props;
   <iframe src={src} title={title} loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
   <p class="lg-consent">
     {lang === 'ru'
-      ? <Fragment>Отправляя форму, вы соглашаетесь с <a href="/privacy/">политикой обработки персональных данных</a>.</Fragment>
-      : <Fragment>By submitting you agree to the <a href="/privacy/">personal data policy</a> (in Russian).</Fragment>}
+      ? <Fragment>Отправляя форму, вы даёте <a href="/consent/">согласие на обработку персональных данных</a> в соответствии с <a href="/privacy/">политикой</a>. Если вам меньше 14 лет, форму заполняет родитель.</Fragment>
+      : <Fragment>By submitting you give <a href="/consent/">consent to personal data processing</a> under the <a href="/privacy/">policy</a> (in Russian). Under 14? A parent fills in the form.</Fragment>}
   </p>
 </div>

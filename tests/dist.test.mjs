@@ -26,7 +26,7 @@ test('reference pages are generated', () => {
   assert.ok(has('docs/reference/api/readme/index.html') && read('docs/reference/api/game-kit/dist/index.html').includes('runCheck'));
 });
 
-const EN_TITLES = ['Quickstart', 'Building with an LLM', 'Game anatomy', 'Publishing', 'FAQ'];
+const EN_TITLES = ['Quickstart', 'Building with an LLM', 'Game anatomy', 'Publishing', 'FAQ']; // DOCS_ORDER order
 
 test('llms.txt follows llmstxt.org and links every docs page in both locales', () => {
   const t = read('llms.txt');
@@ -77,4 +77,43 @@ test('privacy page exists; nothing links to the unreleased store', () => {
   for (const p of ['index.html', 'en/index.html', 'schools/index.html']) {
     assert.doesNotMatch(read(p), /play\.logigra\.ru/, p);
   }
+});
+
+import { readdirSync } from 'node:fs';
+import { DOCS_ORDER } from '../src/docs-order.mjs';
+
+const walkDist = (d = new URL('../dist/', import.meta.url)) => readdirSync(d, { withFileTypes: true })
+  .flatMap((e) => (e.isDirectory() ? walkDist(new URL(`${e.name}/`, d)) : [new URL(e.name, d)]));
+
+test('no internal platform name anywhere in the built site or LLM files', () => {
+  const files = walkDist().filter((u) => /\.(html|txt)$/.test(u.pathname) && !u.pathname.includes('/reference/api/'));
+  for (const u of files) {
+    const t = readFileSync(u, 'utf8').replace(/https:\/\/github\.com\/lenpro-tech\/[a-z-]+/g, '');
+    assert.doesNotMatch(t, /lenpro/i, u.pathname);
+  }
+});
+
+test('every docs page is listed in DOCS_ORDER (so it reaches llms.txt / llms-full.txt)', () => {
+  for (const dir of ['../src/content/docs/docs/', '../src/content/docs/en/docs/']) {
+    const pages = readdirSync(new URL(dir, import.meta.url)).filter((f) => /\.mdx?$/.test(f)).map((f) => f.replace(/\.mdx?$/, ''));
+    assert.deepEqual([...pages].sort(), [...DOCS_ORDER].sort(), dir);
+  }
+});
+
+test('privacy: names Yandex as processor, no blanket no-cookies claim, separate consent page, footer link', () => {
+  const p = read('privacy/index.html');
+  assert.match(p, /ООО «Яндекс»/);
+  assert.doesNotMatch(p, /не использует cookies и системы аналитики/);
+  assert.match(p, /меньше 14 лет/);
+  assert.match(read('consent/index.html'), /Согласие на обработку персональных данных/);
+  for (const pg of ['index.html', 'en/index.html', 'schools/index.html', 'docs/quickstart/index.html']) {
+    assert.match(read(pg), /class="lg-footer"><a href="\/privacy\/"/, pg);
+  }
+});
+
+test('no claims about things that do not exist yet', () => {
+  assert.doesNotMatch(read('docs/faq/index.html'), /программа для старшей школы описана/);
+  assert.doesNotMatch(read('schools/index.html'), /данные хранятся в РФ/);
+  assert.doesNotMatch(read('docs/publishing/index.html'), /еженедельным релизом/);
+  assert.doesNotMatch(read('en/docs/publishing/index.html'), /weekly release/);
 });

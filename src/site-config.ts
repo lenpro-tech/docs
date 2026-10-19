@@ -7,6 +7,7 @@ export const FORMS = {
 export const PD_OPERATOR = {
   name: 'REPLACE_ME_OPERATOR_NAME',
   inn: 'REPLACE_ME_INN',
+  address: 'REPLACE_ME_POSTAL_ADDRESS',
   email: 'REPLACE_ME_EMAIL',
   revision: '2026-10-19',
 } as const;

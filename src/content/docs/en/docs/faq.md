@@ -29,5 +29,5 @@ the exact terms come with the store launch.
 
 ## Can I use it in a classroom?
 
-Yes — a Russian-language programme for high schools is described at
+Yes — a Russian-language format for high schools is described at
 [/schools/](/schools/).

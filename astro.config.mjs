@@ -9,6 +9,7 @@ export default defineConfig({
     starlight({
       title: 'Logigra',
       customCss: ['./src/styles/landing.css'],
+      components: { Footer: './src/components/Footer.astro' },
       defaultLocale: 'root',
       locales: {
         root: { label: 'Русский', lang: 'ru' },
@@ -19,7 +20,7 @@ export default defineConfig({
           // /schools/ and /privacy/ are Astro pages the validator cannot see; generated API pages
           // carry typedoc's "-1" anchors that Starlight's slugger does not produce.
           exclude: ({ slug, link }) =>
-            ['/schools/', '/privacy/'].includes(link) || slug.startsWith('docs/reference/api'),
+            ['/schools/', '/privacy/', '/consent/'].includes(link) || slug.startsWith('docs/reference/api'),
         }),
         starlightTypeDoc({
           entryPoints: [

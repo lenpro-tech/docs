@@ -11,7 +11,7 @@ get read access, which is enough to fork it and open pull requests.
 
 ## Steps
 
-1. Fork `lenpro-tech/games` and clone your fork.
+1. Fork the [games catalog](https://github.com/lenpro-tech/games) and clone your fork.
 2. Run `npm ci` at the repo root (Node 22).
 3. Create a game: `cd games && npx game-kit create <slug> --no-install && cd ..`.
    Set every `@table-games-engine/*` dependency in
@@ -25,7 +25,7 @@ get read access, which is enough to fork it and open pull requests.
    run, plays the game and reviews it against the checklist.
 
 A person plays and reviews every game before it is listed. Approved
-games ship with the next weekly release.
+games ship with the next catalog release.
 
 ## Rules
 

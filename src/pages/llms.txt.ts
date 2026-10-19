@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { DOCS_ORDER as ORDER } from '../docs-order.mjs';
 
-const ORDER = ['quickstart', 'llm', 'anatomy', 'publishing', 'faq'];
 const SITE = 'https://logigra.ru';
 
 export const GET: APIRoute = async () => {

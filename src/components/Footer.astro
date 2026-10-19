@@ -1,0 +1,8 @@
+---
+import Default from '@astrojs/starlight/components/Footer.astro';
+const ru = Astro.locals.starlightRoute.locale !== 'en';
+---
+<Default><slot /></Default>
+<p class="lg-footer">
+  <a href="/privacy/">{ru ? 'Политика обработки персональных данных' : 'Personal data policy (RU)'}</a>
+</p>

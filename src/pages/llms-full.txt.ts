@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { DOCS_ORDER as ORDER } from '../docs-order.mjs';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const ORDER = ['quickstart', 'llm', 'anatomy', 'publishing', 'faq'];
 
 export const GET: APIRoute = async () => {
   const docs = await getCollection('docs');
