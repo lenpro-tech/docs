@@ -12,8 +12,8 @@
   "private": true,
   "dependencies": {
     "@astrojs/starlight": "0.42.6",
-    "@table-games-engine/core": "0.1.0",
-    "@table-games-engine/game-kit": "0.1.0",
+    "@table-games-engine/core": "0.1.1",
+    "@table-games-engine/game-kit": "0.1.1",
     "astro": "7.4.0",
     "starlight-links-validator": "0.27.0",
     "starlight-typedoc": "0.23.1",
