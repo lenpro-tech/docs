@@ -90,9 +90,5 @@ Manual checks:
 
 ## 7. After launch
 
-- Once `@table-games-engine/*` 0.1.1 is on npm, bump the exact pins in
-  `package.json` to 0.1.1. That version exports `./package.json`; the
-  `node_modules` path in `scripts/gen-reference.mjs` and
-  `src/pages/llms-full.txt.ts` can then become a `require.resolve`.
 - In `lenpro-tech/platform`, `docs/superpowers/specs/README.md`, set the Site
   row to `implemented (logigra.ru)`.
